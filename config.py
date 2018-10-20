@@ -23,7 +23,7 @@ class ProdConfig(Config):
     pass
 
 class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://joe:killshot18@localhost/onepitch'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://joe:killshot18@localhost/blog'
 
     DEBUG = True
 
