@@ -1,12 +1,12 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField,TextAreaField,SubmitField
-from wtforms.validators import Required
+from wtforms.validators import Required,Email,EqualTo
 class BlogForm(FlaskForm):
     title = StringField('Enter blog title',validators=[Required()])
     description= TextAreaField('blog')
     submit = SubmitField('Submit')
 class CommentForm(FlaskForm):
-    comment = TextAreaField('Enter comment.',validators = [Required()])
+    comment = TextAreaField('Leave a comment.',validators = [Required()])
     submit = SubmitField('Submit')
 class SubscriberForm(FlaskForm):
     email = StringField("Email Address",validators=[Required(),Email()])
