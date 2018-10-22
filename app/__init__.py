@@ -73,6 +73,7 @@ def create_app(config_name):
     app.register_blueprint(auth_blueprint,url_prefix = '/auth')
 
     #creating the app configurations
+    app.debug=True;
     app.config.from_object(config_options[config_name])
     app.config.update(dict(
     SECRET_KEY="123456789",
