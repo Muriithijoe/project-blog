@@ -46,7 +46,7 @@ class Subscriber(db.Model):
         db.session.commit()
 
 
-class Post(db.Model):
+class Story(db.Model):
     __tablename__='posts'
 
     id = db.Column(db.Integer,primary_key=True)
