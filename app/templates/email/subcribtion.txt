@@ -1,1 +1,3 @@
-
+Hi {{user.username}},
+Thank you for subscribing to my blog.You will be updated on all the great content I
+will be posting everyday.
