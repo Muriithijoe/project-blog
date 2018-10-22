@@ -26,13 +26,13 @@ def index():
     title = "Welcome to My Blog"
     return render_template('index.html',title=title,blogs=blogs,subscriber_form=form)
 
-@main.route("/new_post",methods=['GET','POST'])
+@main.route("/new_blog",methods=['GET','POST'])
 @login_required
-def new_post():
+def new_blog():
     form = BlogForm()
     if form.validate_on_submit():
         title = form.title.data
-        post = form.post.data
+        blog = form.blog.data
         category = form.category.data
         like=0
         new_blog=Blog(title=title,blog=blog,category=category,like=like)
@@ -42,12 +42,12 @@ def new_post():
         subscribers=Subscriber.query.all()
 
         for subscriber in subscribers:
-            mail_message("New Blog Post","email/new_post",subscriber.email,post=new_post)
+            mail_message("New Blog Blog","email/new_blog",subscriber.email,blog=new_blog)
 
         return redirect(url_for('main.index'))
 
-    title="Make a post"
-    return render_template('new_post.html',title=title,post_form=form)
+    title="Make a story"
+    return render_template('new_blog.html',title=title,blog_form=form)
 
 @main.route("/blog/<int:id>",methods=['GET','POST'])
 def blog(id):
@@ -58,7 +58,7 @@ def blog(id):
     if request.args.get("like"):
         blog.like = blog.like+1
 
-        db.session.add(post)
+        db.session.add(blog)
         db.session.commit()
 
         return redirect("/blog/{blog_id}".format(blog_id=blog.id))
@@ -71,7 +71,7 @@ def blog(id):
 
         return redirect("/blog/{blog_id}".format(blog_id=blog.id))
 
-    return render_template('blog.html',post=post,comments=comment,comment_form=form)
+    return render_template('blog.html',blog=blog,comments=comment,comment_form=form)
 @main.route("/anime",methods=['GET','POST'])
 def anime():
     """
