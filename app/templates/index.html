@@ -1,51 +1,54 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 {% import 'macros.html' as macro%}
-<h1>The Blog</h1>
+{% import "bootstrap/wtf.html" as wtf %}
+
 {% block styles%}
     {{ super() }}
     <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/all.css')}}">
+    <link href="https://fonts.googleapis.com/css?family=Cabin|Indie+Flower|Montserrat|Neucha|Noto+Serif+JP|Noto+Serif+KR|Roboto+Mono" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="shortcut icon" href="https://icon2.kisspng.com/20180412/xiw/kisspng-paper-sunset-shimmer-quill-cutie-mark-crusaders-bo-write-5acf53a3231648.3205577215235368031437.jpg">
 {% endblock %}
+
+
+
 {% block content %}
-<style>
-    @import url('https://fonts.googleapis.com/css?family=Niramit');
-     h2{            display: block;
-            font-family: 'Niramit', sans-serif;
-            color: #360a70cc;
-            font-size: 40px;
-            font-weight: 1000;
-            text-align: center;
-          }
-          ul {
-            font-family: 'Srisakdi',  Georgia;
-          }
-          body{
-            background-image: url('/static/css/photo/21028.jpg');
-            background-size: cover;
-          }
-          .container{
-            background-image: url('/static/css/tribal.jpg');
-          }
-  </style>
+<br><br><br>
 
-    <title> {{ title }} </title>
+<div class="col-md-8">
+{% for post in posts %}
 
-    <div class="container">
-        <ul class="list-unstyled">
-
-            {{ macro.displayBlogList(blogs) }}
-
-        </ul>
-
-        <ul class="list-unstyled">
-            {{ macro.displayCommentList(comments) }}
-        </ul>
-
-
-
-        <hr>
-
-
+  <div class="panel">
+    <div class="panel-body responsive">
+      <div class="col-md-8">
+        <div class="text-center">
+    <h1>{{post.title}}</h1>
+    <h4>{{post.posted.strftime('%Y-%m-%d')}}/ <a href="#">{{post.category}}</a>/<a href="/post/{{post.id}}?like=1"<i class="fas fa-heart"></i>{{post.like}}</a></h4>
   </div>
+    <br>
+
+    <p>{{post.post|truncate(350)}}</p>
+    <div class="text-center">
+    <a href="/post/{{post.id}}" >CONTINUE READING...</a>
+  </div>
+  </div>
+  <div id="img" class="col-md-4">
+    <img src="{{url_for('static',filename='css/halloween.jpg')}}" class="img-rounded img-responsive">
+  </div>
+</div>
+  </div>
+{% endfor %}
+</div>
 
 
+<div class="col-md-4 ">
+<div class="panel" id="subcribeform">
+  <div class="panel-body">
+    <h4>Subscribe to our Blog</h4>
+  {{wtf.quick_form(subscriber_form)}}
+  {{simplemde.load}}
+</div>
+</div>
+</div>
 {% endblock %}

@@ -47,25 +47,25 @@ class Subscriber(db.Model):
 
 
 class Blog(db.Model):
-    __tablename__='posts'
+    __tablename__='blogs'
 
     id = db.Column(db.Integer,primary_key=True)
-    post_id=db.Column(db.Integer)
+    blog_id=db.Column(db.Integer)
     title = db.Column(db.String)
-    post = db.Column(db.String)
+    blog = db.Column(db.String)
     category = db.Column(db.String)
     like=db.Column(db.Integer)
     posted = db.Column(db.DateTime,default=datetime.utcnow)
 
 
-    def save_post(self):
+    def save_blog(self):
         db.session.add(self)
         db.session.commit()
 
     @classmethod
-    def get_posts(cls,id):
-        posts=Post.query.filter_by(post_id=id).all()
-        return posts
+    def get_blogs(cls,id):
+        blogs=Blog.query.filter_by(blog_id=id).all()
+        return blogs
 
 class Comment(db.Model):
     __tablename__='comments'
@@ -73,7 +73,7 @@ class Comment(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     comment = db.Column(db.String)
     posted = db.Column(db.DateTime,default=datetime.utcnow)
-    post_id = db.Column(db.Integer,db.ForeignKey("posts.id"))
+    blog_id = db.Column(db.Integer,db.ForeignKey("blogs.id"))
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
 
     def save_comment(self):
