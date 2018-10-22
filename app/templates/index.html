@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
 {% import 'macros.html' as macro%}
-<h1>One minute pitch</h1>
+<h1>The Blog</h1>
 {% block styles%}
     {{ super() }}
     <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
@@ -30,35 +30,9 @@
     <title> {{ title }} </title>
 
     <div class="container">
-
-        <div class="row">
-
-            <div class="col-md-4 col-lg-4">
-                <div class="jumbotron">
-                    <h2 class="pitch-header">
-                        Pitches
-                     </h2>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-lg-4">
-            </div>
-            <div class="col-md-4 col-lg-4">
-                <div class="jumbotron">
-                    <h2 class="pitch-create">
-                        <a href="/pitch/new">
-                            New Pitch
-                        </a>
-                    </h2>
-                </div>
-            </div>
-
-        </div>
-        <hr>
-
         <ul class="list-unstyled">
 
-            {{ macro.displayPitchList(pitches) }}
+            {{ macro.displayBlogList(blogs) }}
 
         </ul>
 
