@@ -1,0 +1,5 @@
+Wassup {{user.username}}
+Welcome to One-Minute-Pitches
+Thank you for signing into One minute pitches. Welcome to the family enjoy
+the pitches feel free to post pitches of your own or to like and leave
+comments of other peoples pitches.
