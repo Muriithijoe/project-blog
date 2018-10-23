@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf%}
+{% block content %}
+
+  <h2>{{blogs.title}}</h2>
+  <p>{{blogs.description}}</p>
+  <a href="/new_comment/{{blogs.id}}?like=1">Like: {{blogs.like}}</a>
+  <a href="/new_comment/{{blogs.id}}?dislike=1">Dislike: {{blogs.dislike}}</a>
+
+
+    <title> {{ title }} </title>
+        <div class="row">
+            <div class="col-md-2 col-lg-2">
+            </div>
+            <div class=" col-xs-12 col-sm-12 col-md-8 col-lg-8 create-group">
+                {{ wtf.quick_form(form) }}
+                {{simplemde.load}}
+            </div>
+            <div class="col-md-2 col-lg-2">
+            </div>
+        </div>
+
+        <div class="col-md-12">
+          <h2>Comments</h2>
+          {% for comment in comments %}
+            <p>{{comment.comment}}</p>
+          {% endfor %}
+        </div>
+{% endblock %}
